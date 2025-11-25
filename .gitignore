@@ -9,3 +9,6 @@ wheels/
 # Virtual environments
 .venv
 .ipynb_checkpoints
+content.png
+result.png
+style.png
