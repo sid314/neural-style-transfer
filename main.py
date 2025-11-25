@@ -22,7 +22,14 @@ def main():
 
     content_image = load_img(sys.argv[1])
     style_image = load_img(sys.argv[2])
-    image = tf.Variable(content_image)
+
+    target_shape = tf.shape(content_image)
+
+    noise_tensor = tf.random.uniform(
+        shape=target_shape, minval=0, maxval=1.0, dtype=tf.float32
+    )
+
+    image = tf.Variable(noise_tensor)
     extractor = StyleContentModel(style_layers, content_layers)
     style_targets = extractor(style_image)["style"]
     content_targets = extractor(content_image)["content"]
